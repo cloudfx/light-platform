@@ -1,0 +1,6 @@
+rootProject.name = "light-platform"
+
+include 'light-core'
+include 'light-spring'
+include 'examples'
+
