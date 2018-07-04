@@ -1,4 +1,4 @@
-package org.cloudfx.light.examples.order.adapters;
+package org.cloudfx.light.examples.order.infrastructures;
 
 
 import org.cloudfx.light.examples.order.domain.Order;

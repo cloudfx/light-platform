@@ -8,7 +8,5 @@ public interface Repository<T, ID> {
 
     T get(ID id);
 
-    T getOrNew(ID id);
-
     Optional<T> getById(ID id);
 }

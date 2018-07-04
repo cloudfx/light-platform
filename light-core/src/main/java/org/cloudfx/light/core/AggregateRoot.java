@@ -13,7 +13,7 @@ public abstract class AggregateRoot<ID> {
         events.add(event);
     }
 
-    public List<DomainEvent> getEvents() {
+    List<DomainEvent> getEvents() {
         return events;
     }
 

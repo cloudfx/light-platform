@@ -8,8 +8,10 @@ public abstract class AggregateRootRepository<T extends AggregateRoot<ID>, ID> i
         this.publisher = publisher;
     }
 
-    protected void saveRoot(T root) {
-        this.save(this.getOrNew(root.getId()));
+    protected void saveAggregateRoot(T root) {
+        this.saveToDataLayer(root);
         publisher.publish(root.getEvents());
     }
+
+    protected abstract void saveToDataLayer(T root);
 }

@@ -1,9 +1,9 @@
-package org.cloudfx.light.examples.infrastructure;
+package org.cloudfx.light.examples.order.infrastructures;
 
-import org.cloudfx.light.examples.domain.Order;
-import org.cloudfx.light.examples.domain.Order.OrderItem;
-import org.cloudfx.light.examples.domain.Order.OrderRefNo;
-import org.cloudfx.light.examples.domain.OrderRepository;
+import org.cloudfx.light.examples.order.domain.Order;
+import org.cloudfx.light.examples.order.domain.Order.OrderItem;
+import org.cloudfx.light.examples.order.domain.Order.OrderRefNo;
+import org.cloudfx.light.examples.order.domain.OrderRepository;
 
 import static java.util.UUID.randomUUID;
 

@@ -1,17 +1,17 @@
-package org.cloudfx.light.examples.order.adapters;
+package org.cloudfx.light.examples.order.infrastructures;
 
-import org.cloudfx.light.core.AggregateRootRepository;
 import org.cloudfx.light.core.DomainEventPublisher;
 import org.cloudfx.light.examples.order.domain.Order;
+import org.cloudfx.light.examples.order.domain.OrderRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-import static org.cloudfx.light.examples.order.domain.Order.*;
+import static org.cloudfx.light.examples.order.domain.Order.OrderRefNo;
 
 @Repository
-class ORMOrderRepository extends AggregateRootRepository<Order, OrderRefNo> {
+class ORMOrderRepository extends OrderRepository {
 
     private final DataLayerOrderRepository repository;
 
@@ -22,7 +22,7 @@ class ORMOrderRepository extends AggregateRootRepository<Order, OrderRefNo> {
 
     @Override
     public void save(Order order) {
-        this.saveRoot(order);
+        super.saveAggregateRoot(order);
     }
 
     @Override
@@ -31,13 +31,13 @@ class ORMOrderRepository extends AggregateRootRepository<Order, OrderRefNo> {
     }
 
     @Override
-    public Order getOrNew(OrderRefNo refNo) {
-        return getById(refNo).orElse(new Order(refNo));
+    public Optional<Order> getById(OrderRefNo refNo) {
+        return repository.findByRefNo(refNo.getRefNo()).map(OrderEntity::toDomain);
     }
 
     @Override
-    public Optional<Order> getById(OrderRefNo refNo) {
-        return repository.findByRefNo(refNo.getRefNo()).map(OrderEntity::toDomain);
+    protected void saveToDataLayer(Order root) {
+        repository.save(new OrderEntity(root));
     }
 
     interface DataLayerOrderRepository extends JpaRepository<OrderEntity, Long> {
