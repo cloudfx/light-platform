@@ -1,4 +1,4 @@
-package org.cloudfx.light.examples.domain;
+package org.cloudfx.light.examples.order.domain;
 
 import org.cloudfx.light.core.AggregateRoot;
 import org.cloudfx.light.core.DomainEvent;
@@ -14,7 +14,7 @@ public class Order extends AggregateRoot<Order.OrderRefNo> {
 
     public Order(OrderRefNo refNo) {
         this.refNo = refNo;
-        this.status = OrderStatus.CREATED;
+        this.status = OrderStatus.UNDER_PROCESS;
     }
 
     public void add(OrderItem orderItem) {
@@ -44,7 +44,7 @@ public class Order extends AggregateRoot<Order.OrderRefNo> {
     }
 
     public enum OrderStatus {
-        CREATED, COMPLETED;
+        UNDER_PROCESS, COMPLETED;
     }
 
     public static class OrderRefNo {

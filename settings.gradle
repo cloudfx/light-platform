@@ -2,5 +2,10 @@ rootProject.name = "light-platform"
 
 include 'light-core'
 include 'light-spring'
-include 'examples'
+
+include 'examples:order-model'
+findProject(':examples:order-model')?.name = 'order-model'
+
+include 'examples:order-service'
+findProject(':examples:order-service')?.name = 'order-service'
 

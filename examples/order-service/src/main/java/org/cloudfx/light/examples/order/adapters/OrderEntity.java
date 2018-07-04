@@ -1,14 +1,12 @@
-package org.cloudfx.light.examples.adapters;
+package org.cloudfx.light.examples.order.adapters;
 
 
-import org.cloudfx.light.examples.domain.Order;
+import org.cloudfx.light.examples.order.domain.Order;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import static org.cloudfx.light.examples.domain.Order.OrderRefNo;
 
 @Entity
 @Table(name = "ORDERS", schema = "order_management")
@@ -29,6 +27,6 @@ class OrderEntity {
     }
 
     Order toDomain() {
-        return new Order(new OrderRefNo(refNo));
+        return new Order(new Order.OrderRefNo(refNo));
     }
 }
