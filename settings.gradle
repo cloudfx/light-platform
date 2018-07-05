@@ -1,7 +1,8 @@
 rootProject.name = "light-platform"
 
 include 'light-core'
-include 'light-spring'
+include 'light-aggregate-root'
+include 'light-aggregate-postgresql-json-store'
 
 include 'examples:order-model'
 findProject(':examples:order-model')?.name = 'order-model'

@@ -1,0 +1,13 @@
+dependencies {
+    compile(project(":light-aggregate-root"))
+    testCompile("org.postgresql:postgresql:42.2.2")
+    testCompile("org.springframework.boot:spring-boot-starter-data-jpa:${SPRING_BOOT_VERSION}")
+    testCompile("org.springframework.boot:spring-boot-starter-data-rest:${SPRING_BOOT_VERSION}")
+    testCompile("org.springframework.boot:spring-boot-starter-test:${SPRING_BOOT_VERSION}") {
+        exclude group: "junit", module: "junit"
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

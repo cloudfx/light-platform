@@ -21,27 +21,20 @@ allprojects {
 
     jar.enabled = true
 
+    dependencies {
+        compile("org.projectlombok:lombok:1.18.0")
+        compile("org.springframework:spring-core:5.0.7.RELEASE")
+        testCompile("org.junit.jupiter:junit-jupiter-api:5.2.0")
+        testRuntime("org.junit.jupiter:junit-jupiter-engine:5.2.0")
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
     repositories {
         mavenCentral()
         mavenLocal()
-    }
-
-    publishing {
-        repositories {
-            maven {
-                url getProp('REPO_WITH_BINARIES_FOR_UPLOAD')
-                credentials {
-                    username getProp('M2_SETTINGS_REPO_USERNAME') ?: 'admin'
-                    password getProp('M2_SETTINGS_REPO_PASSWORD') ?: 'password'
-                }
-            }
-        }
-        publications {
-            mavenJava(MavenPublication) {
-                artifactId project.name
-                from components.java
-            }
-        }
     }
 
     tasks.withType(Test) {
